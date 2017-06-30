@@ -1,0 +1,58 @@
+JPS:
+
+java ee eclipse
+dynamic prohect web.xml present
+folder WebContent/WEB-INF u can create html files
+
+right click on project - create srvlet it will be in src folder
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>JSPprokject</display-name>
+  <welcome-file-list>
+    <welcome-file>w.html</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+
+
+
+
+or
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>JSPprokject</display-name>
+
+<servlet>
+<servlet-name>XMLServlet</servlet-name>
+<servlet-class>nf.co.eeetest.XMLServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>XMLServlet</servlet-name>
+<url-pattern>/m</url-pattern>
+</servlet-mapping>
+
+
+
+</web-app>
