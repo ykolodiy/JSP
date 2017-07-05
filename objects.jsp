@@ -4,31 +4,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>kyivstar</title>
+<title>Insert title here</title>
 </head>
 <body>
-<%! public int add (int a, int b) {return a+b;} %>
 
 <%
-int n = 1;
-int h = 2;
-int l = n+h;
-%>
- 
-<h1>nahuj suka <% out.println(l); %></h1>
-
-
-
-the value is: <%=l %>
-
-<% l=add(43545, 4356);%>
-
-the value is: <%=l %>
-
-<% for (int i=0; i<7; i++){  %>
+String me = request.getParameter("me");
+if (me !=null) {
+	session.setAttribute("sessionme", me);
+	application.setAttribute("appme", me);
 	
-	<br> i = <%=i+l %>
-	<% ;} %>
+	
+}
+%>
+<br>
+so my name is <%=me %>
+
+
+so my name is session: <%= session.getAttribute("sessionme") %>
+
+
+so my name is context: <%= application.getAttribute("appme") %>
+
 
 </body>
 </html>
