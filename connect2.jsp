@@ -8,7 +8,7 @@
  
 <html>
    <head>
-      <title>INSERT</title>
+      <title>SELECT Operation</title>
    </head>
 
    <body>
@@ -16,24 +16,11 @@
          url = "jdbc:mysql://ec2-34-211-112-79.us-west-2.compute.amazonaws.com:3306/mysql"
          user = "molotov"  password = "Comrade20"/>
  
-
- 
- 
- 
-   <sql:update dataSource = "${snapshot}" var = "result">
-         INSERT INTO Employees VALUES ("${param.id}", "${param.age}", "${param.first}", "${param.last}");
-      </sql:update>
- 
- 
- 
- 
- 
- 
       <sql:query dataSource = "${snapshot}" var = "result">
          SELECT * from Employees;
       </sql:query>
  
-      <table border = "0" width = "100%">
+      <table border = "1" width = "100%">
          <tr>
             <th>Emp ID</th>
             <th>First Name</th>
