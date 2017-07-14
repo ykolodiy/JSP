@@ -18,7 +18,7 @@ try {
 	 String connectionURL = "jdbc:mysql://ec2-34-211-112-79.us-west-2.compute.amazonaws.com:3306/mysql";
      Connection connection = null; 
      Class.forName("com.mysql.jdbc.Driver").newInstance(); 
-     connection = DriverManager.getConnection(connectionURL, "molotov", "Comrade20");
+     connection = DriverManager.getConnection(connectionURL, "", "");
      if(!connection.isClosed())
           out.println("Successfully connected to " + "MySQL server using TCP/IP...");
      connection.close();
