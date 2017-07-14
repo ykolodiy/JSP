@@ -14,7 +14,7 @@
    <body>
       <sql:setDataSource var = "snapshot" driver = "com.mysql.jdbc.Driver"
          url = "jdbc:mysql://ec2-34-211-112-79.us-west-2.compute.amazonaws.com:3306/mysql"
-         user = "molotov"  password = "Comrade20"/>
+         user = ""  password = ""/>
  
  
  
