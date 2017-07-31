@@ -1,0 +1,70 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.sql.*" %> 
+<%@ page import="java.io.*" %> 
+<%@page import="org.json.simple.JSONArray"%>
+<%@page import="org.json.simple.JSONObject"%>
+<%@page import="org.json.simple.parser.JSONParser"%>
+<%@page import="org.json.simple.parser.ParseException"%>
+
+
+
+
+    
+
+
+<% 
+try {
+	
+	 String connectionURL = "jdbc:mysql://ec2-54-202-52-81.us-west-2.compute.amazonaws.com:3306/mysql";
+     Connection connection = null; 
+     Class.forName("com.mysql.jdbc.Driver").newInstance(); 
+     connection = DriverManager.getConnection(connectionURL, "login", "psdd");
+     if(!connection.isClosed()){}  ;
+     
+     
+     
+     
+     Statement st1 = null;
+     st1 = connection.createStatement();
+     
+     
+     JSONArray list = new JSONArray();
+    
+     
+     
+     
+     ResultSet resultSet = st1.executeQuery("SELECT * FROM Employees");
+     
+     while (resultSet.next()) {
+    	 JSONObject obj=new JSONObject();
+    	 
+    	 
+         obj.put("id", resultSet.getString("id"));
+         obj.put("age", resultSet.getString("age"));
+         obj.put("first", resultSet.getString("first"));
+         obj.put("last", resultSet.getString("last"));
+
+         list.add(obj);
+
+         
+    	 }
+     
+     
+     
+          
+     out.print(list);
+
+    	 connection.close();
+    	 
+} catch (Exception e) {
+    	 e.printStackTrace();
+    	 }
+    	 
+
+ 
+
+%>
+
+
+
