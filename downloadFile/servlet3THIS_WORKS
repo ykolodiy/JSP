@@ -1,9 +1,8 @@
-
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.PrintStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,11 +25,23 @@ public class servlet3 extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String my_file = request.getParameter("filename");
-		
+		//Attempting to read from file in: C:\Users\vkoloyu\eclipse\javaEE\eclipse\yuriy1.pdf
+
 		File file = new File(my_file);
+		
+		
+		// You must tell the browser the file type you are going to send
 		  response.setContentType("application/pdf");
-	        response.setHeader("Content-Disposition", "inline; filename='" + my_file + "'");
-				
+		response.setContentType("application/octet-stream");
+		response.setContentLength((int) file.length());
+		
+		
+		// Make sure to show the download dialog
+		response.setHeader( "Content-Disposition",
+		         String.format("attachment; filename=\"%s\"", file.getName()));
+			
+		
+		// This should send the file to browser
 		OutputStream out = response.getOutputStream();
 		FileInputStream in = new FileInputStream(file);
 		byte[] buffer = new byte[4096];
