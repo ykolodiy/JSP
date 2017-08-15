@@ -1,0 +1,66 @@
+
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet("/servlet2")
+public class servlet2 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+ 
+    public servlet2() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	    String pdfPath = request.getParameter("filename");
+	    if (pdfPath == null || pdfPath.equals(""))
+	        throw new ServletException("Invalid or non-existent file parameter in UrlServlet servlet.");
+
+	    if (pdfPath.indexOf(".pdf") == -1)
+	        pdfPath += ".pdf";
+
+	    File pdf = new File(pdfPath);
+	    String pdfName = pdfPath.substring(pdfPath.lastIndexOf("/") + 1, pdfPath.length());
+	   
+	    ServletOutputStream stream = null;
+	    BufferedInputStream buf = null;
+	    
+	    try 
+	    {
+	        stream = response.getOutputStream();
+	        response.setContentType("application/pdf");
+	        response.setHeader("Content-Disposition", "inline; filename='" + pdfName + "'");
+	        FileInputStream input = new FileInputStream(pdf);
+	        response.setContentLength((int) pdf.length());
+	        buf = new BufferedInputStream(input);
+	        int readBytes = 0;
+	        while ((readBytes = buf.read()) != -1)
+	        stream.write(readBytes);
+	    } 
+	    catch (IOException ioe) 
+	    {
+	        throw new ServletException(ioe.getMessage());
+	    } 
+	    finally 
+	    {
+	        if (stream != null)
+	            stream.close();
+	        if (buf != null)
+	            buf.close();
+	    }
+	}
+
+}
