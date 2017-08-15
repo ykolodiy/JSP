@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+//Attempting to read from file in: C:\Users\vkoloyu\eclipse\javaEE\eclipse\yuriy1.pdf
 @WebServlet("/servlet2")
 public class servlet2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,13 +42,15 @@ public class servlet2 extends HttpServlet {
 	    {
 	        stream = response.getOutputStream();
 	        response.setContentType("application/pdf");
-	        response.setHeader("Content-Disposition", "inline; filename='" + pdfName + "'");
+	        response.setHeader("Content-Disposition", "inline; filename=" + pdfName + "");
 	        FileInputStream input = new FileInputStream(pdf);
 	        response.setContentLength((int) pdf.length());
 	        buf = new BufferedInputStream(input);
 	        int readBytes = 0;
 	        while ((readBytes = buf.read()) != -1)
 	        stream.write(readBytes);
+	        
+	        System.out.println("Attempting to read from file in: "+pdf.getCanonicalPath());
 	    } 
 	    catch (IOException ioe) 
 	    {
